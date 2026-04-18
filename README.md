@@ -50,6 +50,15 @@ Template literal interpolations (`${foo}`) are stripped for the preview, so your
 
 Each hover popup includes an **Open in Tab** link. Click it to open the selected SVG in a side panel with a transparency checkerboard background — great for inspecting transparent regions and seeing the full render.
 
+The preview **updates live** as you edit the source file, so you can see your tweaks applied instantly without reopening the tab. Zoom:
+
+- **Scroll wheel** over the image — zoom in/out, pivoting on the cursor position.
+- **Click** on the image — zoom in one step at the clicked point.
+- **Shift + click** — zoom out one step at the clicked point.
+- Toolbar buttons top-right, or `Ctrl/Cmd + 0` to reset to 100%.
+
+Zoom level is preserved across live updates, so refining an SVG while zoomed in doesn't reset your view.
+
 ### Fold and unfold
 
 Long `<svg>` blocks (hundreds of `<path d="…">` lines) make files hard to read. SVG Peek registers a folding region for every `<svg>` so you can collapse them individually via the gutter arrow, or bulk-collapse via the command palette.

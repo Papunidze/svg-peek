@@ -8,7 +8,13 @@ import {
   svgAt,
   toDataUri,
 } from './svg';
-import { openPreview } from './preview';
+import { openPreview, PreviewSource } from './preview';
+
+type PreviewCommandArgs = {
+  uri: string;
+  line: number;
+  character: number;
+};
 
 const LANGUAGES = [
   'svg',
@@ -57,7 +63,19 @@ export function activate(context: vscode.ExtensionContext): void {
       ],
       { provideDocumentFormattingEdits }
     ),
-    vscode.commands.registerCommand('svgPeek.openPreview', openPreview),
+    vscode.commands.registerCommand(
+      'svgPeek.openPreview',
+      (svg: string, source?: PreviewCommandArgs) => {
+        const parsed: PreviewSource | undefined = source
+          ? {
+              uri: vscode.Uri.parse(source.uri),
+              line: source.line,
+              character: source.character,
+            }
+          : undefined;
+        openPreview(svg, parsed);
+      }
+    ),
     vscode.commands.registerCommand('svgPeek.foldAll', () => fold(true)),
     vscode.commands.registerCommand('svgPeek.unfoldAll', () => fold(false)),
     vscode.commands.registerCommand('svgPeek.formatSvgs', formatEmbedded),
@@ -99,7 +117,12 @@ function provideHover(
   md.supportHtml = true;
   md.appendMarkdown(`![preview](${preview})\n\n`);
   md.appendMarkdown(`${describe(match.svg)}\n\n`);
-  const args = encodeURIComponent(JSON.stringify([match.svg]));
+  const source: PreviewCommandArgs = {
+    uri: doc.uri.toString(),
+    line: match.range.start.line,
+    character: match.range.start.character,
+  };
+  const args = encodeURIComponent(JSON.stringify([match.svg, source]));
   md.appendMarkdown(
     `[$(open-preview) Open in Tab](command:svgPeek.openPreview?${args})`
   );
