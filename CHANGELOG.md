@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] — 2026-04-18
+
+### Added
+
+- **Open in Tab** preview now updates live as you edit the source — no more re-opening the panel on every change.
+- Zoom controls in the preview panel. Plain **mouse scroll** zooms in/out pivoted on the cursor; **click** to zoom in at the clicked point; **Shift+click** to zoom out. Toolbar buttons and `Ctrl/Cmd + 0` reset to 100%. Zoom level is preserved across live updates.
+
 ## [0.0.2] — 2026-04-18
 
 ### Fixed
@@ -23,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Document formatter for `.svg` / `.xml` and a command to format embedded SVG blocks in any other file.
 - Optional gutter thumbnails, toggled via the command palette or the `svgPeek.gutter.enabled` setting.
 
-[Unreleased]: https://github.com/Papunidze/svg-peek/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/Papunidze/svg-peek/compare/v0.0.3...HEAD
+[0.0.3]: https://github.com/Papunidze/svg-peek/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/Papunidze/svg-peek/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/Papunidze/svg-peek/releases/tag/v0.0.1
