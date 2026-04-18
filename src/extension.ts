@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import {
+  anchorForSvg,
   describe,
-  detectIndent,
   findSvgs,
   prettyPrint,
   resize,
@@ -170,12 +170,20 @@ async function formatEmbedded(): Promise<void> {
   let changed = 0;
   await editor.edit((builder) => {
     for (const m of matches) {
-      const indent = detectIndent(
-        editor.document.lineAt(m.range.start.line).text
+      const line = editor.document.lineAt(m.range.start.line).text;
+      const { startColumn, baseIndent } = anchorForSvg(
+        line,
+        m.range.start.character
       );
-      const formatted = prettyPrint(m.svg, indent);
-      if (formatted !== m.svg) {
-        builder.replace(m.range, formatted);
+      const start =
+        startColumn === m.range.start.character
+          ? m.range.start
+          : new vscode.Position(m.range.start.line, startColumn);
+      const range = new vscode.Range(start, m.range.end);
+      const original = editor.document.getText(range);
+      const formatted = prettyPrint(m.svg, baseIndent);
+      if (formatted !== original) {
+        builder.replace(range, formatted);
         changed++;
       }
     }

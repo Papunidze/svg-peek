@@ -78,6 +78,27 @@ export function detectIndent(line: string): string {
   return /^[ \t]*/.exec(line)?.[0] ?? '';
 }
 
+export type SvgFormatAnchor = {
+  startColumn: number;
+  baseIndent: string;
+};
+
+// Given the line containing the opening <svg and the column where <svg starts,
+// return the column the replace range should start from (trimming any stray
+// whitespace between the preceding token and <svg) and the base indent to use
+// for the formatted block (the line's leading whitespace, so children sit at
+// that indent + one step and </svg> sits at the indent itself).
+export function anchorForSvg(line: string, svgColumn: number): SvgFormatAnchor {
+  const baseIndent = detectIndent(line);
+  const prefix = line.slice(0, svgColumn);
+  const trimmedPrefix = prefix.replace(/[ \t]+$/, '');
+  const hasPrecedingText = trimmedPrefix.length > baseIndent.length;
+  const hasGap = trimmedPrefix.length < prefix.length;
+  const startColumn =
+    hasPrecedingText && hasGap ? trimmedPrefix.length : svgColumn;
+  return { startColumn, baseIndent };
+}
+
 export function prettyPrint(svg: string, baseIndent = ''): string {
   const step = '  ';
   const tokens = tokenize(svg);

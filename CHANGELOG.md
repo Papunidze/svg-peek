@@ -7,17 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-
-- Nothing yet.
-
-### Changed
-
-- Nothing yet.
-
 ### Fixed
 
-- Nothing yet.
+- **Format SVG Blocks in File** now produces a clean result even when the `<svg>` tag is embedded mid-line or padded with stray whitespace in a template literal. Children are indented from the line's leading whitespace + one step, `</svg>` sits at the line's leading whitespace, and any stray whitespace between the preceding token (for example, the template literal backtick) and `<svg>` is trimmed so the opening tag lands right where you expect. The formatter is now idempotent across repeated invocations.
 
 ## [0.0.1] — 2026-04-18
 
