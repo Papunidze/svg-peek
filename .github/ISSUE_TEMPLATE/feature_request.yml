@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an idea or enhancement for SVG Peek
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. A good feature request states the problem first, the proposed solution second — it keeps the discussion focused on the outcome.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the pain point. What are you trying to do, and what's getting in the way?
+      placeholder: |
+        When working with large .tsx files that contain many inline SVG icons, I...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How would you like it to work? Sketch the API, command, setting, or UI.
+      placeholder: |
+        A new command `SVG Peek: Extract to file` that pulls the selected <svg> out and saves it as...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds or other approaches you've tried or thought about.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, examples from other tools.

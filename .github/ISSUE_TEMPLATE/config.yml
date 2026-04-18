@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question / Discussion
+    url: https://github.com/Papunidze/svg-peek/discussions
+    about: For usage questions, ideas, and open-ended conversation.
+  - name: VS Code Marketplace page
+    url: https://marketplace.visualstudio.com/items?itemName=SvgPeek.svg-peek
+    about: Install, rate, and review the extension.

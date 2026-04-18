@@ -1,0 +1,78 @@
+name: Bug report
+description: Report something that isn't working as expected
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. A clear, minimal repro makes the difference between a fix in a day and a ticket that sits for weeks.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: I am running the latest version of SVG Peek.
+          required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of what you saw vs. what you expected.
+      placeholder: |
+        When I hover over an inline <svg> in a .tsx file, the preview shows as blank...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps. If possible, paste the smallest SVG or file that triggers the bug.
+      placeholder: |
+        1. Open a .tsx file containing `<svg>...</svg>`
+        2. Hover over the opening tag
+        3. See error
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: vscode-version
+    attributes:
+      label: VS Code version
+      description: Help > About, or `code --version`
+      placeholder: "1.116.0"
+    validations:
+      required: true
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: SVG Peek version
+      placeholder: "0.0.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Output from the Developer Tools console (`Help > Toggle Developer Tools`) or the SVG Peek output channel, if any.
+      render: shell
