@@ -21,6 +21,12 @@
 
 Inline `<svg>` blocks in HTML, JSX, TSX, Vue, Markdown, and template literals inside `.ts` / `.js` become first-class citizens: hover to see the rendered image, collapse them so they stop cluttering your code, and pretty-print them with one command.
 
+<div align="center">
+
+https://github.com/user-attachments/assets/08cafbc5-1529-4c4f-b7b4-41944652c467
+
+</div>
+
 ## Table of contents
 
 - [Features](#features)
